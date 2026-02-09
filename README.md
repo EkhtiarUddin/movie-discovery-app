@@ -1,36 +1,230 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movie Discovery App
+
+A modern, responsive movie browsing application built with Next.js, TypeScript, and Tailwind CSS. The app allows users to discover, search, and save movies using The Movie Database (TMDB) API.
+
+## Live Demo
+[![Netlify Status]](https://moviiee-discovery.netlify.app)
+
+## Features
+
+### Core Features
+- **Home Page** - Top rated movies & popular movies by genre
+- **Browse by Genre** - Filter movies by genre with sorting options
+- **Search** - Search movies by title with debounced input
+- **Movie Details** - Comprehensive movie info, cast, and similar movies
+- **Watch Later** - Save movies to watch later list
+- **Recently Viewed** - Track your browsing history
+- **Dark/Light Mode** - Toggle between themes
+
+### Technical Features
+- **Fully Responsive** - Mobile, tablet, and desktop optimized
+- **Fast Performance** - Optimized images and lazy loading
+- **Error Handling** - Graceful error states and fallbacks
+- **Secure** - API keys protected via environment variables
+- **SEO Optimized** - Proper meta tags and structured data
+
+## Tech Stack
+
+### Frontend
+- **Next.js 16.1.6** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Lucide React** - Icon library
+
+### API & Data
+- **TMDB API** - Movie database
+- **LocalStorage** - Client-side persistence
+
+### Deployment
+- **Netlify** - Hosting platform with SSR support
+- **@netlify/plugin-nextjs** - Next.js runtime for Netlify
+
+### Development Tools
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **Autoprefixer** - Vendor prefixing
+
+## Project Structure
+### movie-discovery-app/
+### ├── public/                          # Static assets
+### │   ├── placeholder-movie.jpg       # Movie placeholder image
+### │   ├── placeholder-backdrop.jpg    # Backdrop placeholder image
+### │   └── placeholder-actor.jpg       # Actor placeholder image
+### ├── src/
+### │   ├── app/                        # Next.js app router pages
+ │   │   ├── page.tsx               # Home page
+ │   │   ├── movie/
+ │   │   │   └── [id]/              # Dynamic movie details pages
+ │   │   ├── genre/
+ │   │   │   └── [id]/              # Dynamic genre pages
+ │   │   ├── genres/                 # Browse all genres page
+ │   │   ├── search/                 # Search results page
+ │   │   ├── watch-later/            # Watch later list page
+ │   │   └── recently-viewed/        # Recently viewed page
+ │   ├── components/                 # Reusable components
+ │   │   ├── Header.tsx             # Main navigation header
+ │   │   ├── movie/                 # Movie-specific components
+ │   │   │   ├── MovieCard.tsx     # Individual movie card
+ │   │   │   └── MovieGrid.tsx     # Grid of movie cards
+ │   │   └── ui/                    # UI components
+ │   │       ├── ErrorMessage.tsx  # Error display component
+ │   │       └── LoadingSkeleton.tsx # Loading skeleton
+ │   ├── hooks/                     # Custom React hooks
+ │   │   ├── useStorage.ts         # LocalStorage hooks for watch later
+ │   │   └── useTheme.ts           # Theme toggle hook
+ │   ├── lib/                       # Utility functions and services
+ │   │   ├── tmdb.ts               # TMDB API client with error handling
+ │   │   ├── storage.ts            # localStorage utilities
+ │   │   └── utils.ts              # Helper functions (formatting, etc.)
+ │   └── types/                     # TypeScript type definitions
+ │       └── movie.ts              # Movie-related interfaces and types
+ ├── netlify.toml                   # Netlify deployment configuration
+ ├── package.json                   # Dependencies and npm scripts
+ ├── next.config.mjs                # Next.js configuration
+ ├── tailwind.config.ts             # Tailwind CSS configuration
+ ├── tsconfig.json                  # TypeScript configuration
+ ├── .env.example                   # Environment variables template
+ ├── .gitignore                     # Git ignore file
+ └── README.md                      # This documentation file
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 20.9.0+ and npm/yarn
+- TMDB API key (free from [TMDB](https://www.themoviedb.org/documentation/api))
+
+### Installation
 
 ```bash
-npm run dev
-# or
+# 1. Clone the repository
+git clone https://github.com/EkhtiarUddin/movie-discovery-app.git
+cd movie-discovery-app
+
+# 2. Install dependencies
+npm install or
+yarn
+
+# 3. Set up environment variables
+cp .env.example .env
+
+# Add your TMDB API key to .env.local
+NEXT_PUBLIC_TMDB_API_KEY=your_api_key_here
+
+# 4. Run development server
+npm run dev or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 5. Open your browser and navigate to:
+http://localhost:3000
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Available Scripts
+ - npm run dev: Start the development server
+ - npm run build: Build the application for production
+ - npm start: Start the production server
+ - npm run lint: Run ESLint to check code quality
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration
+### Environment Variables
+ Create a .env.local file in the project root with:
+ NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key_here
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Getting a TMDB API Key
+- 1. Visit https://www.themoviedb.org and create a free account
+- 2. Go to Settings → API
+- 3. Request an API key (select "Developer" option)
+- 4. Copy the API key and add it to your .env.local file
 
-## Learn More
+## Pages & Features
+### Home Page (/)
+- Displays top rated movies in a responsive grid
+- Shows popular movies organized by genre
+- Clean, modern UI with hover effects
 
-To learn more about Next.js, take a look at the following resources:
+### Browse Genres (/genres)
+- Grid display of all available movie genres
+- Each genre card links to genre-specific movie listings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Genre Details (/genre/[id])
+- Movies filtered by selected genre
+- Sorting options: popularity, release date, vote average, title
+- Infinite scroll pagination with "Load More" button
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Movie Details (/movie/[id])
+- Complete movie information: title, overview, release date, rating
+- Cast list with actor photos and character names
+- Similar movie recommendations based on genres
+- Watch later toggle button
+- Automatically added to recently viewed list
 
-## Deploy on Vercel
+### Search (/search)
+- Real-time movie search with debounced input (500ms delay)
+- Responsive grid of search results
+- Empty state and error handling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Watch Later (/watch-later)
+- List of movies saved to watch later
+- Persistent storage using localStorage
+- Add/remove functionality from movie cards and details page
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Recently Viewed (/recently-viewed)
+- Automatically tracks last 50 viewed movies
+- Persistent storage using localStorage
+- Clean list display with movie posters and info
+
+## Important Deployment Notes
+ - Node.js Version: Must be 20.9.0 or higher (configured in netlify.toml)
+ - Build Command: npm run build
+ - Publish Directory: .next
+ - SSR Support: Enabled via @netlify/plugin-nextjs plugin
+
+## Manual Deployment Test
+### npm run build
+# # Check if .next folder is created with proper structure
+
+## Styling & Theming
+### Design System
+- Colors: Primary red palette (#ef4444) with neutral grays
+- Typography: System fonts with responsive sizing
+- Spacing: Consistent 4px base unit (Tailwind default)
+- Components: Reusable, accessible UI components
+
+### Dark Mode
+- Toggle between light and dark themes
+- Detects system preference by default
+- User preference persists in localStorage
+
+## API Security
+ - API keys are stored in environment variables only
+ - Never exposed in client-side code or repository
+ - Rate limiting and error handling implemented
+ - Fallback placeholder images for failed loads
+
+## Performance Optimizations
+ - Image optimization with Next.js Image component
+ - Code splitting and lazy loading
+ - Static generation where possible
+ - Efficient state management with React hooks
+ - Minimal bundle size with tree shaking
+
+## Testing
+### Manual Testing Checklist
+ - [ ] All pages load correctly
+ - [ ] Responsive on mobile, tablet, and desktop
+ - [ ] Dark/light mode toggle works and persists
+ - [ ] Search functionality returns results
+ - [ ] Watch later saves and removes movies
+ - [ ] Genre filtering and sorting works
+ - [ ] Error states display properly
+ - [ ] Loading skeletons show during data fetch
+
+# Development Guidelines
+ - Follow TypeScript best practices and type safety
+ - Use Tailwind CSS for styling (no inline styles)
+ - Write reusable, composable components
+ - Add proper error handling and loading states
+ - Maintain responsive design principles
+ - Include comprehensive comments for complex logic
+
+### Built with using Next.js, TypeScript, and Tailwind CSS
