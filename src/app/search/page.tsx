@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
 import { type Movie, type Genre } from '@/types/movie';
@@ -9,7 +9,7 @@ import MovieGrid from '@/components/movie/MovieGrid';
 import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
 import ErrorMessage from '@/components/ui/ErrorMessage';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
 
@@ -130,5 +130,26 @@ export default function SearchPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <Search className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Search Results</h1>
+          </div>
+          <div className="animate-pulse">
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-4"></div>
+          </div>
+        </div>
+        <LoadingSkeleton />
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
