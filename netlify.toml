@@ -2,9 +2,9 @@
   command = "npm run build"
   publish = ".next"
 
+[build.environment]
+  NODE_VERSION = "20" # Tells Netlify to use Node.js 20.x
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[functions]
-  node_bundler = "esbuild"
   
