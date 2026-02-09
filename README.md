@@ -3,7 +3,7 @@
 A modern, responsive movie browsing application built with Next.js, TypeScript, and Tailwind CSS. The app allows users to discover, search, and save movies using The Movie Database (TMDB) API.
 
 ## Live Demo
-[![Netlify Status]](https://moviiee-discovery.netlify.app)
+[MOVIE DISCOVERY APP](https://moviiee-discovery.netlify.app)
 
 ## Features
 
@@ -44,49 +44,6 @@ A modern, responsive movie browsing application built with Next.js, TypeScript, 
 - **PostCSS** - CSS processing
 - **Autoprefixer** - Vendor prefixing
 
-## Project Structure
-### movie-discovery-app/
-### ├── public/                          # Static assets
-### │   ├── placeholder-movie.jpg       # Movie placeholder image
-### │   ├── placeholder-backdrop.jpg    # Backdrop placeholder image
-### │   └── placeholder-actor.jpg       # Actor placeholder image
-### ├── src/
-### │   ├── app/                        # Next.js app router pages
- │   │   ├── page.tsx               # Home page
- │   │   ├── movie/
- │   │   │   └── [id]/              # Dynamic movie details pages
- │   │   ├── genre/
- │   │   │   └── [id]/              # Dynamic genre pages
- │   │   ├── genres/                 # Browse all genres page
- │   │   ├── search/                 # Search results page
- │   │   ├── watch-later/            # Watch later list page
- │   │   └── recently-viewed/        # Recently viewed page
- │   ├── components/                 # Reusable components
- │   │   ├── Header.tsx             # Main navigation header
- │   │   ├── movie/                 # Movie-specific components
- │   │   │   ├── MovieCard.tsx     # Individual movie card
- │   │   │   └── MovieGrid.tsx     # Grid of movie cards
- │   │   └── ui/                    # UI components
- │   │       ├── ErrorMessage.tsx  # Error display component
- │   │       └── LoadingSkeleton.tsx # Loading skeleton
- │   ├── hooks/                     # Custom React hooks
- │   │   ├── useStorage.ts         # LocalStorage hooks for watch later
- │   │   └── useTheme.ts           # Theme toggle hook
- │   ├── lib/                       # Utility functions and services
- │   │   ├── tmdb.ts               # TMDB API client with error handling
- │   │   ├── storage.ts            # localStorage utilities
- │   │   └── utils.ts              # Helper functions (formatting, etc.)
- │   └── types/                     # TypeScript type definitions
- │       └── movie.ts              # Movie-related interfaces and types
- ├── netlify.toml                   # Netlify deployment configuration
- ├── package.json                   # Dependencies and npm scripts
- ├── next.config.mjs                # Next.js configuration
- ├── tailwind.config.ts             # Tailwind CSS configuration
- ├── tsconfig.json                  # TypeScript configuration
- ├── .env.example                   # Environment variables template
- ├── .gitignore                     # Git ignore file
- └── README.md                      # This documentation file
-
 ## Getting Started
 
 ### Prerequisites
@@ -119,7 +76,7 @@ http://localhost:3000
 
 ```
 
-## Available Scripts
+### Available Scripts
  - npm run dev: Start the development server
  - npm run build: Build the application for production
  - npm start: Start the production server
@@ -179,10 +136,6 @@ http://localhost:3000
  - Publish Directory: .next
  - SSR Support: Enabled via @netlify/plugin-nextjs plugin
 
-## Manual Deployment Test
-### npm run build
-# # Check if .next folder is created with proper structure
-
 ## Styling & Theming
 ### Design System
 - Colors: Primary red palette (#ef4444) with neutral grays
@@ -219,7 +172,7 @@ http://localhost:3000
  - [ ] Error states display properly
  - [ ] Loading skeletons show during data fetch
 
-# Development Guidelines
+## Development Guidelines
  - Follow TypeScript best practices and type safety
  - Use Tailwind CSS for styling (no inline styles)
  - Write reusable, composable components
